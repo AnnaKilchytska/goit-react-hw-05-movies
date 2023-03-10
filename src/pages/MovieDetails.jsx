@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Link, Outlet, useParams } from 'react-router-dom';
-import { fetchMoviesById, getImages } from 'services/api';
+import { fetchMoviesById } from 'services/api';
 
 function MovieDetails() {
   const [image, setImage] = useState('');
@@ -13,11 +13,13 @@ function MovieDetails() {
   console.log('movie ID', id);
 
   useEffect(() => {
+    const imageBaseURL = `https://image.tmdb.org/t/p/original`;
     async function getMovie(id) {
       const movie = await fetchMoviesById(id);
       console.log(movie);
 
-      const imageBaseURL = await getImages();
+      //   const imageBaseURL = await getImages();
+      //   console.log(imageBaseURL);
 
       const { data } = movie;
       setImage(`${imageBaseURL}${data.poster_path}`);

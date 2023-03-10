@@ -1,7 +1,7 @@
 import { nanoid } from 'nanoid';
 import { Link } from 'react-router-dom';
 
-function TrendingFilmsList({ movies }) {
+function FilmsList({ movies }) {
   return (
     <ul>
       {movies.map(movie => {
@@ -15,4 +15,4 @@ function TrendingFilmsList({ movies }) {
   );
 }
 
-export default TrendingFilmsList;
+export default FilmsList;

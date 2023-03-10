@@ -1,7 +1,7 @@
 import { nanoid } from 'nanoid';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { getCredits, getImages } from 'services/api';
+import { getCredits } from 'services/api';
 
 function Cast() {
   const { id } = useParams();
@@ -9,13 +9,14 @@ function Cast() {
   const [actors, setActors] = useState([]);
 
   useEffect(() => {
+    const imageBaseURL = `https://image.tmdb.org/t/p/original`;
     async function getCast(id) {
       const {
         data: { cast },
       } = await getCredits(id);
       console.log('cast', cast);
 
-      const imageBaseURL = await getImages();
+      //   const imageBaseURL = await getImages();
 
       cast.map(person => {
         console.log(person);

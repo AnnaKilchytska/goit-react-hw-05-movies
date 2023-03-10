@@ -29,7 +29,7 @@ export const fetchMoviesById = async id => {
 export const searchMoviesByQuery = async query => {
   try {
     const data = await axios.get(
-      `${BASE_URL}search/movie?api_key=${API_KEY}&${query}`
+      `${BASE_URL}search/movie?api_key=${API_KEY}&query=${query}`
     );
     return data;
   } catch (error) {

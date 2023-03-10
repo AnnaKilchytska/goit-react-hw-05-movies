@@ -1,4 +1,4 @@
-import TrendingFilmsList from 'components/TrendindFilmsList';
+import FilmsList from 'components/FilmsList';
 import { useEffect, useState } from 'react';
 import { fetchPopularFilms } from '../services/api';
 
@@ -15,9 +15,7 @@ function Home() {
     getFilms();
   }, []);
 
-  return (
-    <div>{films.length !== 0 && <TrendingFilmsList movies={films} />}</div>
-  );
+  return <div>{films.length !== 0 && <FilmsList movies={films} />}</div>;
 }
 
 export default Home;

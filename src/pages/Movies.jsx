@@ -1,10 +1,12 @@
+import FilmsList from 'components/FilmsList';
 import Searchbar from 'components/Searchbar';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { searchMoviesByQuery } from 'services/api';
 
 function Movies() {
   const [searchParams, setSearchParams] = useSearchParams();
+  const [movies, setMovies] = useState([]);
 
   useEffect(() => {
     const query = searchParams.get('query');
@@ -13,8 +15,11 @@ function Movies() {
 
     async function getMovie(query) {
       try {
-        const movies = await searchMoviesByQuery(query);
+        const {
+          data: { results: movies },
+        } = await searchMoviesByQuery(query);
         console.log('movies', movies);
+        setMovies(movies);
       } catch (error) {
         console.log(error);
       }
@@ -30,6 +35,7 @@ function Movies() {
   return (
     <div>
       <Searchbar onFormSubmit={handleSubmit} />
+      {movies.length !== 0 && <FilmsList movies={movies} />}
     </div>
   );
 }

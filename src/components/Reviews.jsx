@@ -1,14 +1,25 @@
-import { useEffect } from 'react';
+import { nanoid } from 'nanoid';
+import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { fetchReviews } from '../services/api';
 
 function Reviews() {
   const { id } = useParams();
+  const [reviews, setReviews] = useState([]);
 
   useEffect(() => {
     async function getReviews(id) {
-      const reviews = await fetchReviews();
-      console.log('reviews', reviews);
+      const {
+        data: { results },
+      } = await fetchReviews(id);
+      console.log('reviews', results);
+
+      results.map(res => {
+        return setReviews(prev => [
+          ...prev,
+          { author: res.author, content: res.content },
+        ]);
+      });
     }
 
     getReviews(id);
@@ -16,7 +27,14 @@ function Reviews() {
 
   return (
     <ul>
-      <li>Reviews</li>
+      {reviews.map(review => {
+        return (
+          <li key={nanoid()}>
+            <h3>Author: {review.author}</h3>
+            <p>{review.content}</p>
+          </li>
+        );
+      })}
     </ul>
   );
 }
