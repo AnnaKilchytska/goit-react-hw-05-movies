@@ -1,5 +1,6 @@
+import { StyledLink, StyledMovieDetails } from 'components/App.styled';
 import { useEffect, useState } from 'react';
-import { Link, Outlet, useParams } from 'react-router-dom';
+import { Outlet, useParams } from 'react-router-dom';
 import { fetchMoviesById } from 'services/api';
 
 function MovieDetails() {
@@ -32,31 +33,35 @@ function MovieDetails() {
   }, [id]);
 
   return (
-    <div>
-      <img src={image} width="370px" alt={title} />
-      <h2>
-        {title} <span>({releaseDate})</span>
-      </h2>
-      <p>{description}</p>
-      <ul>
-        {genres.map((g, i) => (
-          <li key={i}>{g}</li>
-        ))}
-      </ul>
+    <StyledMovieDetails>
+      <div className="main-detailes">
+        <img src={image} width="370px" alt={title} />
 
-      <div>
-        Additional information:
+        <div>
+          <h2>
+            {title} <span>({releaseDate})</span>
+          </h2>
+          <p>{description}</p>
+          <ul>
+            {genres.map((g, i) => (
+              <li key={i}>{g}</li>
+            ))}
+          </ul>
+        </div>
+      </div>
+      <div className="additional">
+        <h3>Additional information:</h3>
         <ul>
           <li>
-            <Link to="cast">Cast</Link>
+            <StyledLink to="cast">Cast</StyledLink>
           </li>
           <li>
-            <Link to="reviews">Reviews</Link>
+            <StyledLink to="reviews">Reviews</StyledLink>
           </li>
         </ul>
         <Outlet />
       </div>
-    </div>
+    </StyledMovieDetails>
   );
 }
 

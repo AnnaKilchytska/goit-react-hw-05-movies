@@ -1,3 +1,5 @@
+import { StyledSearchBar } from './App.styled';
+
 function Searchbar({ onFormSubmit }) {
   const handleFormSubmit = e => {
     e.preventDefault();
@@ -9,12 +11,12 @@ function Searchbar({ onFormSubmit }) {
     e.target.reset();
   };
   return (
-    <form onSubmit={handleFormSubmit}>
+    <StyledSearchBar onSubmit={handleFormSubmit}>
       <label>
         <input type="text" name="query" />
       </label>
       <button type="submit">Search</button>
-    </form>
+    </StyledSearchBar>
   );
 }
 

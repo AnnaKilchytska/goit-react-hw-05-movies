@@ -1,17 +1,17 @@
 import { nanoid } from 'nanoid';
-import { Link } from 'react-router-dom';
+import { StyledFilmList, StyledLink } from './App.styled';
 
 function FilmsList({ movies }) {
   return (
-    <ul>
+    <StyledFilmList>
       {movies.map(movie => {
         return (
           <li key={nanoid()}>
-            <Link to={`movies/${movie.id}`}>{movie.title}</Link>
+            <StyledLink to={`movies/${movie.id}`}>{movie.title}</StyledLink>
           </li>
         );
       })}
-    </ul>
+    </StyledFilmList>
   );
 }
 

@@ -2,8 +2,12 @@ import { nanoid } from 'nanoid';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { getCredits } from 'services/api';
+import { StyledCast } from './App.styled';
 
 function Cast() {
+  const defaultImg =
+    'https://static.vecteezy.com/system/resources/previews/006/693/445/original/camera-icon-template-black-color-editable-camera-icon-symbol-flat-illustration-for-graphic-and-web-design-free-vector.jpg';
+
   const { id } = useParams();
 
   const [actors, setActors] = useState([]);
@@ -26,7 +30,10 @@ function Cast() {
           {
             name: person.name,
             character: person.character,
-            image: `${imageBaseURL}${person.profile_path}`,
+            image:
+              person.profile_path !== null
+                ? `${imageBaseURL}${person.profile_path}`
+                : null,
           },
         ]);
       });
@@ -36,22 +43,26 @@ function Cast() {
   }, [id]);
 
   return (
-    <div>
+    <>
       <p>The cast of the film</p>
-      {actors.map(actor => {
-        return (
-          <div key={nanoid()}>
-            <img src={actor.image} alt={actor.name} width="240px" />
-            <p>
-              Name: <span>{actor.name}</span>
-            </p>
-            <p>
-              Character: <span>{actor.character}</span>
-            </p>
-          </div>
-        );
-      })}
-    </div>
+      <StyledCast>
+        {actors.map(actor => {
+          return (
+            <div className="item" key={nanoid()}>
+              <img
+                src={actor.image ? actor.image : defaultImg}
+                alt={actor.name}
+                width="240px"
+              />
+              <p>{actor.name}</p>
+              <p>
+                As <span>{actor.character}</span>
+              </p>
+            </div>
+          );
+        })}
+      </StyledCast>
+    </>
   );
 }
 

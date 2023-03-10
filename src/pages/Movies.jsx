@@ -7,6 +7,7 @@ import { searchMoviesByQuery } from 'services/api';
 function Movies() {
   const [searchParams, setSearchParams] = useSearchParams();
   const [movies, setMovies] = useState([]);
+  //   const query = searchParams.get('query');
 
   useEffect(() => {
     const query = searchParams.get('query');
