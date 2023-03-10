@@ -7,7 +7,7 @@ function TrendingFilmsList({ movies }) {
       {movies.map(movie => {
         return (
           <li key={nanoid()}>
-            <Link to={`${movie.id}`}>{movie.title}</Link>
+            <Link to={`movies/${movie.id}`}>{movie.title}</Link>
           </li>
         );
       })}
