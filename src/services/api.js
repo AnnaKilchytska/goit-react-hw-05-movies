@@ -21,5 +21,38 @@ export const fetchMoviesById = async id => {
     const data = await axios.get(`${BASE_URL}movie/${id}?api_key=${API_KEY}`);
     console.log(data);
     return data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const searchMoviesByQuery = async query => {
+  try {
+    const data = await axios.get(
+      `${BASE_URL}movie/${query}?api_key=${API_KEY}`
+    );
+    return data;
   } catch (error) {}
+};
+
+export const getCredits = async id => {
+  try {
+    const data = await axios.get(
+      `${BASE_URL}movie/${id}/credits?api_key=${API_KEY}`
+    );
+    return data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const getReviews = async id => {
+  try {
+    const data = await axios.get(
+      `${BASE_URL}movie/${id}/review?api_key=${API_KEY}`
+    );
+    return data;
+  } catch (error) {
+    console.log(error);
+  }
 };
