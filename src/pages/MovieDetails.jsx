@@ -36,7 +36,7 @@ function MovieDetails() {
     <StyledMovieDetails>
       <div className="backLink">
         <StyledNavLink to={location.state?.from ?? '/'}>
-          Back to movies list
+          &#8592; Back to movies list
         </StyledNavLink>
       </div>
       <div className="main-detailes">

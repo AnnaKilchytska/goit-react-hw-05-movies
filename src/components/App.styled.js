@@ -110,10 +110,6 @@ export const StyledNavLink = styled(NavLink)`
     color: #1f1fac;
     border-bottom: 2px solid #1f1fac;
   }
-
-  &:visited {
-    color: blueviolet;
-  }
 `;
 
 export const StyledFilmList = styled.ul`
