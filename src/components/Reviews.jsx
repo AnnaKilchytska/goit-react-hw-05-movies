@@ -26,16 +26,19 @@ function Reviews() {
   }, [id]);
 
   return (
-    <ul>
-      {reviews.map(review => {
-        return (
-          <li key={nanoid()}>
-            <h3>Author: {review.author}</h3>
-            <p>{review.content}</p>
-          </li>
-        );
-      })}
-    </ul>
+    <div>
+      {reviews.length === 0 && <p>There is no reviews of this movie yet!</p>}
+      <ul>
+        {reviews.map(review => {
+          return (
+            <li key={nanoid()}>
+              <h3>Author: {review.author}</h3>
+              <p>{review.content}</p>
+            </li>
+          );
+        })}
+      </ul>
+    </div>
   );
 }
 

@@ -43,26 +43,26 @@ function Cast() {
   }, [id]);
 
   return (
-    <>
-      <p>The cast of the film</p>
-      <StyledCast>
-        {actors.map(actor => {
-          return (
-            <div className="item" key={nanoid()}>
-              <img
-                src={actor.image ? actor.image : defaultImg}
-                alt={actor.name}
-                width="240px"
-              />
-              <p>{actor.name}</p>
-              <p>
-                As <span>{actor.character}</span>
-              </p>
-            </div>
-          );
-        })}
-      </StyledCast>
-    </>
+    <StyledCast>
+      {actors.length === 0 && (
+        <div>Seems like there is no information about the cast!</div>
+      )}
+      {actors.map(actor => {
+        return (
+          <div className="item" key={nanoid()}>
+            <img
+              src={actor.image ? actor.image : defaultImg}
+              alt={actor.name}
+              width="240px"
+            />
+            <p>{actor.name}</p>
+            <p className="role">
+              <span>As</span> <span>{actor.character}</span>
+            </p>
+          </div>
+        );
+      })}
+    </StyledCast>
   );
 }
 

@@ -1,6 +1,6 @@
-import { StyledLink, StyledMovieDetails } from 'components/App.styled';
-import { useEffect, useState } from 'react';
-import { Outlet, useParams } from 'react-router-dom';
+import { StyledMovieDetails, StyledNavLink } from 'components/App.styled';
+import { Suspense, useEffect, useState } from 'react';
+import { Outlet, useLocation, useParams } from 'react-router-dom';
 import { fetchMoviesById } from 'services/api';
 
 function MovieDetails() {
@@ -11,7 +11,7 @@ function MovieDetails() {
   const [description, setDescription] = useState('');
 
   const { id } = useParams();
-  console.log('movie ID', id);
+  const location = useLocation();
 
   useEffect(() => {
     const imageBaseURL = `https://image.tmdb.org/t/p/original`;
@@ -34,6 +34,11 @@ function MovieDetails() {
 
   return (
     <StyledMovieDetails>
+      <div className="backLink">
+        <StyledNavLink to={location.state?.from ?? '/'}>
+          Back to movies list
+        </StyledNavLink>
+      </div>
       <div className="main-detailes">
         <img src={image} width="370px" alt={title} />
 
@@ -53,13 +58,15 @@ function MovieDetails() {
         <h3>Additional information:</h3>
         <ul>
           <li>
-            <StyledLink to="cast">Cast</StyledLink>
+            <StyledNavLink to="cast">Cast</StyledNavLink>
           </li>
           <li>
-            <StyledLink to="reviews">Reviews</StyledLink>
+            <StyledNavLink to="reviews">Reviews</StyledNavLink>
           </li>
         </ul>
-        <Outlet />
+        <Suspense fallback={<div>Loading...</div>}>
+          <Outlet />
+        </Suspense>
       </div>
     </StyledMovieDetails>
   );

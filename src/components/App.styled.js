@@ -52,6 +52,10 @@ export const StyledMovieDetails = styled.div`
   margin-top: 20px;
   margin-bottom: 20px;
 
+  & .backLink {
+    padding: 15px;
+  }
+
   & .main-detailes {
     display: flex;
     margin-bottom: 20px;
@@ -66,17 +70,45 @@ export const StyledMovieDetails = styled.div`
   }
 
   & .additional {
+    & ul {
+      display: flex;
+      gap: 30px;
+      margin-bottom: 30px;
+      margin-top: 30px;
+    }
   }
 `;
 
 export const StyledLink = styled(Link)`
-  /* text-decoration: none; */
+  text-decoration: none;
+  border-bottom: 2px solid transparent;
+  transition: all 0.3s;
+  color: black;
+
+  &:hover,
+  &:focus {
+    color: #1f1fac;
+    border-bottom: 2px solid #1f1fac;
+  }
+
+  &:visited {
+    color: blueviolet;
+  }
+`;
+
+export const StyledNavLink = styled(NavLink)`
+  text-decoration: none;
+  border-bottom: 2px solid transparent;
+  padding: 15px;
+  margin-bottom: 10px;
+  transition: all 0.3s;
   color: black;
 
   &:active,
   &:hover,
   &:focus {
     color: #1f1fac;
+    border-bottom: 2px solid #1f1fac;
   }
 
   &:visited {
@@ -95,6 +127,11 @@ export const StyledCast = styled.div`
   flex-wrap: wrap;
   gap: 20px;
 
-  &.item {
+  & img {
+    width: 100%;
+  }
+
+  & .item {
+    flex-basis: calc((100% - 80px) / 5);
   }
 `;
